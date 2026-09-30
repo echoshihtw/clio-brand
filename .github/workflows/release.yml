@@ -3,9 +3,13 @@ name: Release
 # guard -> verify -> release. Merging the staging -> main release PR lands here,
 # and semantic-release tags the next version from the commit types since the
 # last tag: feat -> minor, fix or perf -> patch, BREAKING CHANGE -> major.
-# It tags, publishes to npm and publishes a GitHub Release; it commits
-# nothing to main. npm trusts this workflow directly (trusted publishing), so
-# no npm token is stored anywhere.
+# It tags and publishes a GitHub Release; it commits nothing to main.
+#
+# npm publishing is paused ("npmPublish": false in .releaserc.json): npm's
+# registry rejects the OIDC identity GitHub now issues for this account
+# (npm/cli#9969), so each release is published to npm by hand, per the README.
+# Trusted publishing is already set up on npmjs.com: once npm fixes the bug,
+# set npmPublish back to true. id-token: write stays for that.
 
 on:
   push:
