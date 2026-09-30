@@ -1,6 +1,6 @@
 # clio-brand
 
-Clio's brand colours, shared by the landing page
+Clio's brand colours and logo, shared by the landing page
 ([clio-web](https://github.com/echoshihtw/clio-web)) and the app
 ([clio-app](https://github.com/echoshihtw/clio-app)).
 
@@ -15,6 +15,20 @@ Clio's brand colours, shared by the landing page
 Muted text, borders, shadows and soft fills are blends of these three, never
 new colours. Values live only in [`tokens.js`](tokens.js); this table explains
 them and is not a second copy to edit.
+
+## The logo
+
+[`logo/clio-single-ink-master.svg`](logo/clio-single-ink-master.svg) is the
+approved upright master mark: a handmade monoline portrait with a connected
+soft fringe and a separate smile.
+
+- One ink, `ink` above, on a transparent background.
+- A uniform 8-unit stroke with rounded caps and joins.
+- The head and fringe meet at exact shared points; the smile is the only
+  separate stroke.
+- Never rotate, stretch or change individual stroke weights. Colour, texture
+  and animation treatments are derived from this file without changing its
+  geometry.
 
 ## Use
 

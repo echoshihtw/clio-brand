@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 330" role="img" aria-labelledby="clio-mark-title" aria-describedby="clio-mark-desc">
+  <title id="clio-mark-title">Clio Single Ink master mark</title>
+  <desc id="clio-mark-desc">An upright handmade monoline portrait with connected soft fringe and a separate smile.</desc>
+  <g
+    fill="none"
+    stroke="#211A1C"
+    stroke-width="8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M150 22C113 18 81 29 57 52C34 74 29 106 31 149C33 192 43 233 67 261C88 286 116 299 150 299C185 299 213 283 231 254C249 224 255 185 252 143C250 102 238 71 216 49C197 31 175 23 150 22Z" />
+    <path d="M150 22C146 54 137 78 120 98C100 121 72 137 31 149" />
+    <path d="M150 22C153 56 164 84 181 103C199 124 222 137 252 143" />
+    <path d="M110 188C112 209 122 224 138 231C154 238 170 232 181 218C187 210 190 201 191 190" />
+  </g>
+</svg>
