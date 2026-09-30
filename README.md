@@ -100,17 +100,18 @@ semantic-release commits nothing back.
 
 npm's registry rejects the identity GitHub Actions now presents for this
 account ([npm/cli#9969](https://github.com/npm/cli/issues/9969)), so the release
-job does not publish to npm. After a release PR is merged and its tag exists,
-publish that tag yourself, with 2FA:
+job does not publish to npm. After a release PR is merged, publish its tag
+yourself, with 2FA:
 
 ```bash
-git fetch --tags
-git switch --detach vX.Y.Z
-npm pkg set version=X.Y.Z   # local only: package.json holds a placeholder
-npm publish --dry-run       # expect @echoshihtw/clio-brand@X.Y.Z, 5 files
-npm publish
-git restore package.json && git switch -
+scripts/publish.sh vX.Y.Z
 ```
+
+It builds from a fresh copy of exactly that tag, never from your checkout, and
+stops if the tag does not exist yet, if the version is already on npm, or if a
+path in `package.json`'s `files` is missing from the package. It lists what it
+will publish and asks before publishing. `1.3.0` went out without its icons
+because it was published before its tag existed, from an out-of-date checkout.
 
 Every tag should have the same version on npm; check with
 `npm view @echoshihtw/clio-brand versions`. Once npm fixes the bug, set
