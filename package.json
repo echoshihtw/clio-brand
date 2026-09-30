@@ -1,0 +1,14 @@
+{
+  "name": "clio-brand",
+  "version": "1.0.0",
+  "description": "Clio's brand colours, shared by the landing page and the app.",
+  "private": true,
+  "main": "tokens.js",
+  "files": [
+    "tokens.js",
+    "preset.js"
+  ],
+  "scripts": {
+    "test": "node --test"
+  }
+}
