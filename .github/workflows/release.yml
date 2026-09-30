@@ -3,7 +3,9 @@ name: Release
 # guard -> verify -> release. Merging the staging -> main release PR lands here,
 # and semantic-release tags the next version from the commit types since the
 # last tag: feat -> minor, fix or perf -> patch, BREAKING CHANGE -> major.
-# It tags and publishes a GitHub Release; it commits nothing to main.
+# It tags, publishes to npm and publishes a GitHub Release; it commits
+# nothing to main. npm trusts this workflow directly (trusted publishing), so
+# no npm token is stored anywhere.
 
 on:
   push:
@@ -42,6 +44,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+      id-token: write # lets npm verify this workflow instead of a stored token
     steps:
       - uses: actions/checkout@v4
         with:
