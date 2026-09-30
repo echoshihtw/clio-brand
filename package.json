@@ -10,5 +10,8 @@
   ],
   "scripts": {
     "test": "node --test"
+  },
+  "devDependencies": {
+    "semantic-release": "^25.0.9"
   }
 }
