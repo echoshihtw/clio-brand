@@ -1,6 +1,6 @@
 # clio-brand
 
-Clio's brand colours and logo, shared by the landing page
+Clio's brand colours, logo and app icons, shared by the landing page
 ([clio-web](https://github.com/echoshihtw/clio-web)) and the app
 ([clio-app](https://github.com/echoshihtw/clio-app)).
 
@@ -29,6 +29,23 @@ soft fringe and a separate smile.
 - Never rotate, stretch or change individual stroke weights. Colour, texture
   and animation treatments are derived from this file without changing its
   geometry.
+
+## App icons
+
+`icons/` holds the icons apps install with, paper on ink, rendered from the
+master logo and `tokens.js` by `npm run icons`:
+
+| File | Size | Used for |
+| --- | --- | --- |
+| `favicon.ico` | 16, 32, 48 | Browser tabs |
+| `apple-touch-icon.png` | 180 | iPhone and iPad home screen |
+| `icon-192.png`, `icon-512.png` | 192, 512 | Android and desktop install |
+| `icon-maskable-512.png` | 512 | Android's circle and squircle shapes |
+
+The favicon is the one place the logo's stroke changes: it is drawn at 18
+instead of 8, because the master line disappears at tab size. Everything else
+keeps the master stroke. Never edit the PNGs by hand; change the logo or a
+colour, then run `npm run icons`.
 
 ## Use
 
