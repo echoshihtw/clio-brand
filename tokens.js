@@ -3,7 +3,7 @@
 // except logo/clio-single-ink-master.svg, which draws in `ink` and must be
 // updated by hand if `ink` ever changes.
 module.exports = {
-  paper: "#fffaf3",
+  paper: "#fafafa",
   pink: "#efa5b5",
   ink: "#211a1c",
 }
