@@ -1,0 +1,49 @@
+name: Release
+
+# Pull requests run the tests. A push to main runs them again on the commit
+# that landed, then semantic-release tags the next version from the commit
+# types since the last tag: feat -> minor, fix or perf -> patch,
+# BREAKING CHANGE -> major, anything else -> no release.
+#
+# Merges are squash-only with the PR title as the commit subject, so the PR
+# title is what decides the version.
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm test
+
+  release:
+    name: Release
+    needs: test
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # semantic-release reads every commit since the last tag
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

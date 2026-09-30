@@ -43,5 +43,17 @@ brand.pink // "#efa5b5"
 
 ## Changing a colour
 
-Edit `tokens.js`, run `npm test`, tag a new version, then bump the tag in each
-app. Each app picks up the change when it upgrades, not before.
+Edit `tokens.js` on a branch and open a pull request into `main`. Its title
+decides the release, because merges are squashed and the title becomes the
+commit that [semantic-release](https://semantic-release.gitbook.io) reads:
+
+| PR title                             | Release                           |
+| ------------------------------------ | --------------------------------- |
+| `feat: …`                            | minor, `v1.0.0` → `v1.1.0`        |
+| `fix: …` or `perf: …`                | patch, `v1.0.0` → `v1.0.1`        |
+| `BREAKING CHANGE:` in the body       | major, `v1.0.0` → `v2.0.0`        |
+| `docs:`, `chore:`, `test:`, …        | none                              |
+
+Merging tags the version and publishes a GitHub Release with the notes. Then
+bump the tag in each app's `package.json`. Each app picks up the change when it
+upgrades, not before.
