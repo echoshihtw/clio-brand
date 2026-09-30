@@ -8,7 +8,7 @@ Clio's brand colours, logo and app icons, shared by the landing page
 
 | Name  | Value     | Role                                              |
 | ----- | --------- | ------------------------------------------------- |
-| paper | `#fffaf3` | Backgrounds and light text                        |
+| paper | `#fafafa` | Backgrounds and light text                        |
 | pink  | `#efa5b5` | Brand moments and memory signals — used sparingly |
 | ink   | `#211a1c` | Text, outlines, dark sections and buttons         |
 
