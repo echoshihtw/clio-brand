@@ -33,14 +33,14 @@ soft fringe and a separate smile.
 ## Use
 
 ```bash
-npm install github:echoshihtw/clio-brand#v1.0.0
+npm install @echoshihtw/clio-brand
 ```
 
 **CSS variables.** Add the preset to `tailwind.config.js` to get
 `--clio-paper`, `--clio-pink` and `--clio-ink` on `:root`:
 
 ```js
-presets: [require("clio-brand/preset")],
+presets: [require("@echoshihtw/clio-brand/preset")],
 ```
 
 Name your own roles on top of them, such as
@@ -51,7 +51,7 @@ it cannot clash with DaisyUI's.
 theme, read it from the tokens:
 
 ```js
-const brand = require("clio-brand")
+const brand = require("@echoshihtw/clio-brand")
 brand.pink // "#efa5b5"
 ```
 
@@ -72,8 +72,10 @@ the release:
 Each push to `staging` opens or updates one pull request from `staging` into
 `main`, titled with the version it will release. To try the change first,
 point an app at `github:echoshihtw/clio-brand#staging`. Then merge that pull
-request with a **merge commit**, never a squash: that tags the version and
-publishes a GitHub Release with the notes.
+request with a **merge commit**, never a squash: that tags the version,
+publishes it to npm as `@echoshihtw/clio-brand`, and publishes a GitHub Release
+with the notes.
 
-Finally bump the tag in each app's `package.json`. Each app picks up the change
-when it upgrades, not before.
+Each app picks up the change when it upgrades, not before: a fix (`1.1.x`)
+arrives on its next `npm install`, a new feature (`1.x.0`) on
+`npm install @echoshihtw/clio-brand@latest`.

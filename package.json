@@ -1,8 +1,15 @@
 {
-  "name": "clio-brand",
-  "version": "1.0.0",
-  "description": "Clio's brand colours, shared by the landing page and the app.",
-  "private": true,
+  "name": "@echoshihtw/clio-brand",
+  "version": "1.1.0",
+  "description": "Clio's brand colours and logo, shared by the landing page and the app.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/echoshihtw/clio-brand.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "tokens.js",
   "files": [
     "tokens.js",
