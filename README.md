@@ -72,14 +72,33 @@ the release:
 Each push to `staging` opens or updates one pull request from `staging` into
 `main`, titled with the version it will release. To try the change first,
 point an app at `github:echoshihtw/clio-brand#staging`. Then merge that pull
-request with a **merge commit**, never a squash: that tags the version,
-publishes it to npm as `@echoshihtw/clio-brand`, and publishes a GitHub Release
-with the notes.
+request with a **merge commit**, never a squash: that tags the version and
+publishes a GitHub Release with the notes.
 
 The `version` in `package.json` is a placeholder
-(`0.0.0-semantically-released`). semantic-release writes the real one at publish
-time and commits nothing back, so the version is the latest git tag, which is
-always the same as npm's.
+(`0.0.0-semantically-released`). The real version is the latest git tag;
+semantic-release commits nothing back.
+
+### Publishing to npm, by hand for now
+
+npm's registry rejects the identity GitHub Actions now presents for this
+account ([npm/cli#9969](https://github.com/npm/cli/issues/9969)), so the release
+job does not publish to npm. After a release PR is merged and its tag exists,
+publish that tag yourself, with 2FA:
+
+```bash
+git fetch --tags
+git switch --detach vX.Y.Z
+npm pkg set version=X.Y.Z   # local only: package.json holds a placeholder
+npm publish --dry-run       # expect @echoshihtw/clio-brand@X.Y.Z, 5 files
+npm publish
+git restore package.json && git switch -
+```
+
+Every tag should have the same version on npm; check with
+`npm view @echoshihtw/clio-brand versions`. Once npm fixes the bug, set
+`"npmPublish"` back to `true` in `.releaserc.json`: trusted publishing is
+already configured on npmjs.com.
 
 Each app picks up the change when it upgrades, not before: a fix (`1.1.x`)
 arrives on its next `npm install`, a new feature (`1.x.0`) on
