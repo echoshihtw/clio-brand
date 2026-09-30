@@ -43,9 +43,10 @@ brand.pink // "#efa5b5"
 
 ## Changing a colour
 
-Edit `tokens.js` on a branch and open a pull request into `main`. Its title
-decides the release, because merges are squashed and the title becomes the
-commit that [semantic-release](https://semantic-release.gitbook.io) reads:
+The same flow as the apps. Edit `tokens.js` on a branch and open a pull
+request into `staging`. Squash it: the title becomes the commit that
+[semantic-release](https://semantic-release.gitbook.io) reads, so it decides
+the release:
 
 | PR title                             | Release                           |
 | ------------------------------------ | --------------------------------- |
@@ -54,6 +55,11 @@ commit that [semantic-release](https://semantic-release.gitbook.io) reads:
 | `BREAKING CHANGE:` in the body       | major, `v1.0.0` → `v2.0.0`        |
 | `docs:`, `chore:`, `test:`, …        | none                              |
 
-Merging tags the version and publishes a GitHub Release with the notes. Then
-bump the tag in each app's `package.json`. Each app picks up the change when it
-upgrades, not before.
+Each push to `staging` opens or updates one pull request from `staging` into
+`main`, titled with the version it will release. To try the change first,
+point an app at `github:echoshihtw/clio-brand#staging`. Then merge that pull
+request with a **merge commit**, never a squash: that tags the version and
+publishes a GitHub Release with the notes.
+
+Finally bump the tag in each app's `package.json`. Each app picks up the change
+when it upgrades, not before.

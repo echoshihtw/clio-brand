@@ -1,34 +1,42 @@
 name: Release
 
-# Pull requests run the tests. A push to main runs them again on the commit
-# that landed, then semantic-release tags the next version from the commit
-# types since the last tag: feat -> minor, fix or perf -> patch,
-# BREAKING CHANGE -> major, anything else -> no release.
-#
-# Merges are squash-only with the PR title as the commit subject, so the PR
-# title is what decides the version.
+# guard -> verify -> release. Merging the staging -> main release PR lands here,
+# and semantic-release tags the next version from the commit types since the
+# last tag: feat -> minor, fix or perf -> patch, BREAKING CHANGE -> major.
+# It tags and publishes a GitHub Release; it commits nothing to main.
 
 on:
-  pull_request:
   push:
     branches:
       - main
 
 jobs:
-  test:
-    name: Test
+  guard:
+    name: Guard
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
-      - run: npm test
+          fetch-depth: 2 # enough to see HEAD's parents
+
+      # A squash collapses staging into one commit whose subject is the release
+      # PR's title, chore(release): ..., so semantic-release would see no feat
+      # or fix and release nothing.
+      - name: Refuse a squashed release
+        run: |
+          parents=$(git rev-list --parents -n 1 HEAD | wc -w)
+          if [ "$parents" -lt 3 ]; then
+            echo "::error::main received a non-merge commit. Merge staging -> main with a MERGE COMMIT, never squash."
+            exit 1
+          fi
+
+  verify:
+    needs: guard
+    uses: ./.github/workflows/verify.yml
 
   release:
     name: Release
-    needs: test
-    if: github.event_name == 'push'
+    needs: verify
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -43,7 +51,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-      - run: npm ci
+      - run: npm ci --prefer-offline --no-audit
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
