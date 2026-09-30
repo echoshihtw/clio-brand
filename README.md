@@ -76,6 +76,11 @@ request with a **merge commit**, never a squash: that tags the version,
 publishes it to npm as `@echoshihtw/clio-brand`, and publishes a GitHub Release
 with the notes.
 
+The `version` in `package.json` is a placeholder
+(`0.0.0-semantically-released`). semantic-release writes the real one at publish
+time and commits nothing back, so the version is the latest git tag, which is
+always the same as npm's.
+
 Each app picks up the change when it upgrades, not before: a fix (`1.1.x`)
 arrives on its next `npm install`, a new feature (`1.x.0`) on
 `npm install @echoshihtw/clio-brand@latest`.
