@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 330" role="img" aria-labelledby="title desc">
-  <title id="title">Clio Single Ink master mark</title>
-  <desc id="desc">An upright handmade monoline portrait with connected soft fringe and a separate smile.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 330" role="img" aria-labelledby="clio-mark-title" aria-describedby="clio-mark-desc">
+  <title id="clio-mark-title">Clio Single Ink master mark</title>
+  <desc id="clio-mark-desc">An upright handmade monoline portrait with connected soft fringe and a separate smile.</desc>
   <g
     fill="none"
     stroke="#211A1C"
