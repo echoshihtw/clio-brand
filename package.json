@@ -6,7 +6,8 @@
   "main": "tokens.js",
   "files": [
     "tokens.js",
-    "preset.js"
+    "preset.js",
+    "logo"
   ],
   "scripts": {
     "test": "node --test"
