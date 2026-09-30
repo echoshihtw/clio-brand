@@ -14,12 +14,15 @@
   "files": [
     "tokens.js",
     "preset.js",
-    "logo"
+    "logo",
+    "icons"
   ],
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "icons": "node scripts/render-icons.js"
   },
   "devDependencies": {
+    "playwright-core": "^1.63.0",
     "semantic-release": "^25.0.9"
   }
 }
