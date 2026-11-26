@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "playwright-core": "^1.63.0",
-    "semantic-release": "^25.0.9"
+    "semantic-release": "^26.0.1"
   }
 }
